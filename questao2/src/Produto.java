@@ -1,36 +1,50 @@
-class Produto {
+public class Produto {
     private int codigo;
     private String nome;
     private String tamanho;
     private String cor;
     private double valor;
-    private int quantidade;
+    private int quantidadeEstoque;
 
-    public Produto(int codigo, String nome, String tamanho, String cor, double valor, int quantidade) {
+
+    public Produto(int codigo, String nome, String tamanho, String cor, double valor, int quantidadeEstoque) {
         this.codigo = codigo;
         this.nome = nome;
         this.tamanho = tamanho;
         this.cor = cor;
         this.valor = valor;
-        this.quantidade = quantidade;
+        this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    public void realizarVenda(int quantidadeVendida, String formaPagamento) {
-        if (quantidadeVendida > quantidade) {
-            System.out.println("Estoque insuficiente!");
-            return;
-        }
-        this.quantidade -= quantidadeVendida;
-        double valorTotal = valor * quantidadeVendida;
-        if (formaPagamento.equalsIgnoreCase("Pix") || formaPagamento.equalsIgnoreCase("Espécie") ||
-                formaPagamento.equalsIgnoreCase("Transferência") || formaPagamento.equalsIgnoreCase("Débito")) {
-            valorTotal *= 0.95;
-        }
 
-        System.out.println("Valor total a pagar: R$" + valorTotal);
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void mostrarEstoque() {
-        System.out.println("Produto: " + nome + " | Estoque atual: " + quantidade);
+    public String getNome() {
+        return nome;
+    }
+
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Produto: " + nome + " (Código: " + codigo + "), Tamanho: " + tamanho + ", Cor: " + cor +
+                ", Valor: R$" + String.format("%.2f", valor) + ", Quantidade em Estoque: " + quantidadeEstoque;
     }
 }
